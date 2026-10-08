@@ -53,6 +53,7 @@
     <Compile Include="EstadoUsuario.cs" />
     <Compile Include="FORMAPAGO.cs" />
     <Compile Include="Inventario.cs" />
+    <Compile Include="LoteInventario.cs" />
     <Compile Include="Negocio.cs" />
     <Compile Include="PAGO.cs" />
     <Compile Include="Producto.cs" />
