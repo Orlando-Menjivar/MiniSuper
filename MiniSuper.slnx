@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MiniSuper.BussinesLogic/MiniSuper.BussinesLogic.csproj" Id="e422b9d7-c140-4255-93d8-724e873616b2" />
+  <Project Path="MiniSuper.DataAccess/MiniSuper.DataAccess.csproj" Id="a7851065-3c4f-4ee1-a092-3336120e4c95" />
+  <Project Path="MiniSuper.Desktop/MiniSuper.Desktop.csproj" />
+  <Project Path="MiniSuper.Entity/MiniSuper.Entity.csproj" Id="ca54f811-d744-4517-82c7-1b27704a205e" />
+</Solution>
