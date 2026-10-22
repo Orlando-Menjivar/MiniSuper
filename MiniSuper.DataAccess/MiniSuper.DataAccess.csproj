@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="CargoRepository.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="ClienteRepository.cs" />
     <Compile Include="ConnectionFactory.cs" />
+    <Compile Include="DetalleCompraRepository.cs" />
     <Compile Include="EmpleadoRepository.cs" />
     <Compile Include="NegocioRepository.cs" />
     <Compile Include="PagoRepository.cs" />
