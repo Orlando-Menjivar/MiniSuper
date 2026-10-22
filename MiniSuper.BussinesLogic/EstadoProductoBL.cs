@@ -3,7 +3,7 @@ using MiniSuper.Entity;
 using System;
 using System.Collections.Generic;
 
-namespace Super.BusinessLogic
+namespace MiniSuper.BusinessLogic
 {
     public class EstadoProductoBL
     {
