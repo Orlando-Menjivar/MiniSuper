@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniSuper.Entity
 {
-    public class FORMAPAGO
+    public class FormaPago
     {
         public int FormaPagoId { get; set; }
         public string TipoPago { get; set; }
