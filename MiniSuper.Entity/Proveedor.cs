@@ -17,7 +17,7 @@ namespace MiniSuper.Entity
         public string TipoProveedor { get; set; }
         public string DUI { get; set; }
         public string Telefono { get; set; }
-        public string correo { get; set; }
+        public string Correo { get; set; }
         public string Direccion { get; set; }
     }
 }
