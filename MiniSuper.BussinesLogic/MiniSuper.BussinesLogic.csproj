@@ -44,6 +44,7 @@
     <Compile Include="CargoBL.cs" />
     <Compile Include="CategoriaBL.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CompraBL.cs" />
     <Compile Include="EstadoProductoBL.cs" />
     <Compile Include="ProductoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
