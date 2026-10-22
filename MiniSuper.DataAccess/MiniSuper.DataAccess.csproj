@@ -43,7 +43,14 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ConnectionFactory.cs" />
+    <Compile Include="EmpleadoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiniSuper.Entity\MiniSuper.Entity.csproj">
+      <Project>{CA54F811-D744-4517-82C7-1B27704A205E}</Project>
+      <Name>MiniSuper.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
