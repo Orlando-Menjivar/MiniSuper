@@ -19,6 +19,12 @@ namespace MiniSuper.DataAccess
 
 
         }
+
+        public int Insert(Rol entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Rol> SelectAll()
         {
             List<Rol> result = null;
