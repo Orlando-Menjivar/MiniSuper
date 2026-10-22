@@ -16,6 +16,12 @@ namespace MiniSuper.DataAccess
         {
             _connectionFactory = connectionFactory;
         }
+
+        public int Insert(Rol entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Cliente> SelectAll()
         {
             List<Cliente> result = null;
