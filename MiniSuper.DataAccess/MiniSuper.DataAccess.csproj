@@ -48,6 +48,7 @@
     <Compile Include="DetalleCompraRepository.cs" />
     <Compile Include="EmpleadoRepository.cs" />
     <Compile Include="FormaPagoRepository.cs" />
+    <Compile Include="InventarioRepository.cs" />
     <Compile Include="NegocioRepository.cs" />
     <Compile Include="PagoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
