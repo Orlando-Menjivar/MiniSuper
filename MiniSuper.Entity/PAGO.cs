@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniSuper.Entity
 {
-    public class PAGO
+    public class Pago
     {
         public int PagoId { get; set; }
         public int VentaId { get; set; }
