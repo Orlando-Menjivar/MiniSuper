@@ -52,6 +52,7 @@
     <Compile Include="EstadoUsuarioRepository.cs" />
     <Compile Include="FormaPagoRepository.cs" />
     <Compile Include="InventarioRepository.cs" />
+    <Compile Include="LoteInventarioRepository.cs" />
     <Compile Include="NegocioRepository.cs" />
     <Compile Include="PagoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
