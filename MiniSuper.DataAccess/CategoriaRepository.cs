@@ -50,5 +50,22 @@ namespace MiniSuper.DataAccess
             }
             return result;
         }
+
+        public int Insert(Categoria entity)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpCategoriaInsert", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NombreCategoria", entity.NombreCategoria);
+                    conn.Open();
+                    result = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return result;
+        }
     }
 }
