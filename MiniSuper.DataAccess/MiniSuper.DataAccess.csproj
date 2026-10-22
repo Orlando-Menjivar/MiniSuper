@@ -46,6 +46,7 @@
     <Compile Include="ClienteRepository.cs" />
     <Compile Include="ConnectionFactory.cs" />
     <Compile Include="DetalleCompraRepository.cs" />
+    <Compile Include="DetalleInventarioRepository.cs" />
     <Compile Include="EmpleadoRepository.cs" />
     <Compile Include="FormaPagoRepository.cs" />
     <Compile Include="InventarioRepository.cs" />
