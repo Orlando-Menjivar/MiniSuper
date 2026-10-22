@@ -16,6 +16,12 @@ namespace MiniSuper.DataAccess
         {
             _connectionFactory = connectionFactory;
         }
+
+        public int Insert(LoteInventario entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<LoteInventario> SelectAll()
         {
             List<LoteInventario> result = null;

@@ -16,6 +16,12 @@ namespace MiniSuper.DataAccess
         {
             _connectionFactory = connectionFactory;
         }
+
+        public int Insert(DetalleCompra entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<DetalleCompra> SelectAll()
         {
             List<DetalleCompra> result = null;
