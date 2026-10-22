@@ -43,6 +43,9 @@ namespace MiniSuper.DataAccess
                                 ApellidoProveedor = rd.GetString(3),
                                 TipoProveedor = rd.GetString(4),
                                 DUI = rd.GetString(5),
+                                Telefono = rd.GetString(6),
+                                Correo = rd.GetString(7),
+                                Direccion = rd.GetString(8)
                             };
                             result.Add(entity);
                         }
