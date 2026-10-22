@@ -46,6 +46,7 @@
     <Compile Include="EstadoProductoBL.cs" />
     <Compile Include="ProductoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MiniSuper.DataAccess\MiniSuper.DataAccess.csproj">
