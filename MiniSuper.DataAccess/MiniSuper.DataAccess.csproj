@@ -49,6 +49,7 @@
     <Compile Include="DetalleCompraRepository.cs" />
     <Compile Include="DetalleInventarioRepository.cs" />
     <Compile Include="EmpleadoRepository.cs" />
+    <Compile Include="EstadoUsuarioRepository.cs" />
     <Compile Include="FormaPagoRepository.cs" />
     <Compile Include="InventarioRepository.cs" />
     <Compile Include="NegocioRepository.cs" />
