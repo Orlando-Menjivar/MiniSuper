@@ -53,6 +53,7 @@
     <Compile Include="EstadoUsuarioBL.cs" />
     <Compile Include="LoteInventario.cs" />
     <Compile Include="NegocioBL.cs" />
+    <Compile Include="PagoBL.cs" />
     <Compile Include="ProductoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProveedorBL.cs" />
