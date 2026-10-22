@@ -45,6 +45,7 @@
     <Compile Include="CategoriaRepository.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="ClienteRepository.cs" />
+    <Compile Include="CompraRepository.cs" />
     <Compile Include="ConnectionFactory.cs" />
     <Compile Include="DetalleVentaRepository.cs" />
     <Compile Include="DetalleCompraRepository.cs" />
