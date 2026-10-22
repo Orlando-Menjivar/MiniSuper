@@ -47,10 +47,13 @@
     <Compile Include="ClienteBL.cs" />
     <Compile Include="CompraBL.cs" />
     <Compile Include="DetalleCompraBL.cs" />
+    <Compile Include="DetalleInventarioBL.cs" />
     <Compile Include="DetalleVentaBL.cs" />
     <Compile Include="EmpleadoBL.cs" />
     <Compile Include="EstadoProductoBL.cs" />
     <Compile Include="EstadoUsuarioBL.cs" />
+    <Compile Include="FormaPagoBL.cs" />
+    <Compile Include="InventarioBL.cs" />
     <Compile Include="LoteInventario.cs" />
     <Compile Include="NegocioBL.cs" />
     <Compile Include="PagoBL.cs" />
