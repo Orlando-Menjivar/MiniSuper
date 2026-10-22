@@ -41,12 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CargoRepository.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="ConnectionFactory.cs" />
     <Compile Include="DetalleCompraRepository.cs" />
     <Compile Include="EmpleadoRepository.cs" />
+    <Compile Include="NegocioRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolRepository.cs" />
+    <Compile Include="UsuarioRepository.cs" />
+    <Compile Include="VentaRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MiniSuper.Entity\MiniSuper.Entity.csproj">
