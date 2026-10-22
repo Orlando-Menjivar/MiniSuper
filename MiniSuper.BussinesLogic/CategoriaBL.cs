@@ -28,5 +28,19 @@ namespace MiniSuper.BusinessLogic
 
             return result;
         }
+
+        public int Insert(Categoria entity)
+        {
+            int result = 0;
+            try
+            {
+                result = _repository.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return result;
+        }
     }
 }
