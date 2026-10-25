@@ -16,9 +16,8 @@ namespace MiniSuper.DataAccess
         public DetalleInventarioRepository(ConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
-
-
         }
+
         public List<DetalleInventario> SelectAll()
         {
             List<DetalleInventario> result = null;
@@ -27,7 +26,7 @@ namespace MiniSuper.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand("SpDetalleInventarioSelectAll", conn))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
                     using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
@@ -46,7 +45,6 @@ namespace MiniSuper.DataAccess
                                 Cantidad = rd.GetInt32(5),
                                 Observacion = rd.GetString(6),
                                 DetVentaId = rd.IsDBNull(7) ? (int?)null : rd.GetInt32(7)
-
                             };
                             result.Add(entity);
                         }
@@ -56,5 +54,105 @@ namespace MiniSuper.DataAccess
             return result;
         }
 
+        public DetalleInventario Select(int detalleInventarioId)
+        {
+            DetalleInventario entity = null;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleInventarioSelect", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetalleInventarioId", detalleInventarioId);
+
+                    conn.Open();
+                    using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
+                    {
+                        if (rd.Read())
+                        {
+                            entity = new DetalleInventario
+                            {
+                                DetalleInventarioId = rd.GetInt32(0),
+                                InventarioId = rd.GetInt32(1),
+                                LoteInventarioId = rd.GetInt32(2),
+                                FechaHoraMovimiento = rd.GetDateTime(3),
+                                TipoMovimiento = rd.GetString(4),
+                                Cantidad = rd.GetInt32(5),
+                                Observacion = rd.GetString(6),
+                                DetVentaId = rd.IsDBNull(7) ? (int?)null : rd.GetInt32(7)
+                            };
+                        }
+                    }
+                }
+            }
+            return entity;
+        }
+
+        public int Insert(DetalleInventario entity)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleInventarioInsert", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@InventarioId", entity.InventarioId);
+                    cmd.Parameters.AddWithValue("@LoteInventarioId", entity.LoteInventarioId);
+                    cmd.Parameters.AddWithValue("@FechaHoraMovimiento", entity.FechaHoraMovimiento);
+                    cmd.Parameters.AddWithValue("@TipoMovimiento", entity.TipoMovimiento);
+                    cmd.Parameters.AddWithValue("@Cantidad", entity.Cantidad);
+                    cmd.Parameters.AddWithValue("@Observacion", entity.Observacion);
+                    cmd.Parameters.AddWithValue("@DetVentaId", (object)entity.DetVentaId ?? DBNull.Value);
+
+                    conn.Open();
+                    result = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return result;
+        }
+
+        public int Update(DetalleInventario entity)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleInventarioUpdate", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetalleInventarioId", entity.DetalleInventarioId);
+                    cmd.Parameters.AddWithValue("@InventarioId", entity.InventarioId);
+                    cmd.Parameters.AddWithValue("@LoteInventarioId", entity.LoteInventarioId);
+                    cmd.Parameters.AddWithValue("@FechaHoraMovimiento", entity.FechaHoraMovimiento);
+                    cmd.Parameters.AddWithValue("@TipoMovimiento", entity.TipoMovimiento);
+                    cmd.Parameters.AddWithValue("@Cantidad", entity.Cantidad);
+                    cmd.Parameters.AddWithValue("@Observacion", entity.Observacion);
+                    cmd.Parameters.AddWithValue("@DetVentaId", (object)entity.DetVentaId ?? DBNull.Value);
+
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            return result;
+        }
+
+        public int Delete(int detalleInventarioId)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleInventarioDelete", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetalleInventarioId", detalleInventarioId);
+
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            return result;
+        }
     }
 }
