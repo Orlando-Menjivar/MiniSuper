@@ -105,46 +105,5 @@ namespace MiniSuper.DataAccess
             }
             return result;
         }
-
-        public int Update(DetalleCompra entity)
-        {
-            int result = 0;
-
-            using (SqlConnection conn = _connectionFactory.CreateConnection())
-            {
-                using (SqlCommand cmd = new SqlCommand("SpDetalleCompraUpdate", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DetalleCompraId", entity.DetalleCompraId);
-                    cmd.Parameters.AddWithValue("@Total", entity.Total);
-                    cmd.Parameters.AddWithValue("@Cantidad", entity.Cantidad);
-                    cmd.Parameters.AddWithValue("@CompraId", entity.CompraId);
-                    cmd.Parameters.AddWithValue("@ProveedorId", entity.ProveedorId);
-                    cmd.Parameters.AddWithValue("@UsuarioId", entity.UsuarioId);
-
-                    conn.Open();
-                    result = cmd.ExecuteNonQuery();
-                }
-            }
-            return result;
-        }
-
-        public int Delete(int detalleCompraId)
-        {
-            int result = 0;
-
-            using (SqlConnection conn = _connectionFactory.CreateConnection())
-            {
-                using (SqlCommand cmd = new SqlCommand("SpDetalleCompraDelete", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DetalleCompraId", detalleCompraId);
-
-                    conn.Open();
-                    result = cmd.ExecuteNonQuery();
-                }
-            }
-            return result;
-        }
     }
 }
