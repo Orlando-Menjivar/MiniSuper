@@ -12,14 +12,10 @@ namespace MiniSuper.DataAccess
     public class DetalleCompraRepository
     {
         private readonly ConnectionFactory _connectionFactory;
+
         public DetalleCompraRepository(ConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
-        }
-
-        public int Insert(DetalleCompra entity)
-        {
-            throw new NotImplementedException();
         }
 
         public List<DetalleCompra> SelectAll()
@@ -30,7 +26,7 @@ namespace MiniSuper.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand("SpDetalleCompraSelectAll", conn))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
                     using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
@@ -44,7 +40,7 @@ namespace MiniSuper.DataAccess
                                 DetalleCompraId = rd.GetInt32(0),
                                 Total = rd.GetDecimal(1),
                                 Cantidad = rd.GetInt32(2),
-                                CompraId= rd.GetInt32(3),
+                                CompraId = rd.GetInt32(3),
                                 ProveedorId = rd.GetInt32(4),
                                 UsuarioId = rd.GetInt32(5)
                             };
@@ -54,7 +50,101 @@ namespace MiniSuper.DataAccess
                 }
             }
             return result;
+        }
 
+        public DetalleCompra Select(int detalleCompraId)
+        {
+            DetalleCompra entity = null;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleCompraSelect", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetalleCompraId", detalleCompraId);
+
+                    conn.Open();
+                    using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
+                    {
+                        if (rd.Read())
+                        {
+                            entity = new DetalleCompra
+                            {
+                                DetalleCompraId = rd.GetInt32(0),
+                                Total = rd.GetDecimal(1),
+                                Cantidad = rd.GetInt32(2),
+                                CompraId = rd.GetInt32(3),
+                                ProveedorId = rd.GetInt32(4),
+                                UsuarioId = rd.GetInt32(5)
+                            };
+                        }
+                    }
+                }
+            }
+            return entity;
+        }
+
+        public int Insert(DetalleCompra entity)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleCompraInsert", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Total", entity.Total);
+                    cmd.Parameters.AddWithValue("@Cantidad", entity.Cantidad);
+                    cmd.Parameters.AddWithValue("@CompraId", entity.CompraId);
+                    cmd.Parameters.AddWithValue("@ProveedorId", entity.ProveedorId);
+                    cmd.Parameters.AddWithValue("@UsuarioId", entity.UsuarioId);
+
+                    conn.Open();
+                    result = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return result;
+        }
+
+        public int Update(DetalleCompra entity)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleCompraUpdate", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetalleCompraId", entity.DetalleCompraId);
+                    cmd.Parameters.AddWithValue("@Total", entity.Total);
+                    cmd.Parameters.AddWithValue("@Cantidad", entity.Cantidad);
+                    cmd.Parameters.AddWithValue("@CompraId", entity.CompraId);
+                    cmd.Parameters.AddWithValue("@ProveedorId", entity.ProveedorId);
+                    cmd.Parameters.AddWithValue("@UsuarioId", entity.UsuarioId);
+
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            return result;
+        }
+
+        public int Delete(int detalleCompraId)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleCompraDelete", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetalleCompraId", detalleCompraId);
+
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            return result;
         }
     }
 }
