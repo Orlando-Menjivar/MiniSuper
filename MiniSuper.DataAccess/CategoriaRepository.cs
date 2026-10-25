@@ -26,7 +26,7 @@ namespace MiniSuper.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand("SpCategoriaSelectAll", conn))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     conn.Open();
                     using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
@@ -129,3 +129,4 @@ namespace MiniSuper.DataAccess
         }
     }
 }
+
