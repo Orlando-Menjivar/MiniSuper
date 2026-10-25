@@ -111,48 +111,5 @@ namespace MiniSuper.DataAccess
             }
             return result;
         }
-
-        public int Update(DetalleInventario entity)
-        {
-            int result = 0;
-
-            using (SqlConnection conn = _connectionFactory.CreateConnection())
-            {
-                using (SqlCommand cmd = new SqlCommand("SpDetalleInventarioUpdate", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DetalleInventarioId", entity.DetalleInventarioId);
-                    cmd.Parameters.AddWithValue("@InventarioId", entity.InventarioId);
-                    cmd.Parameters.AddWithValue("@LoteInventarioId", entity.LoteInventarioId);
-                    cmd.Parameters.AddWithValue("@FechaHoraMovimiento", entity.FechaHoraMovimiento);
-                    cmd.Parameters.AddWithValue("@TipoMovimiento", entity.TipoMovimiento);
-                    cmd.Parameters.AddWithValue("@Cantidad", entity.Cantidad);
-                    cmd.Parameters.AddWithValue("@Observacion", entity.Observacion);
-                    cmd.Parameters.AddWithValue("@DetVentaId", (object)entity.DetVentaId ?? DBNull.Value);
-
-                    conn.Open();
-                    result = cmd.ExecuteNonQuery();
-                }
-            }
-            return result;
-        }
-
-        public int Delete(int detalleInventarioId)
-        {
-            int result = 0;
-
-            using (SqlConnection conn = _connectionFactory.CreateConnection())
-            {
-                using (SqlCommand cmd = new SqlCommand("SpDetalleInventarioDelete", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DetalleInventarioId", detalleInventarioId);
-
-                    conn.Open();
-                    result = cmd.ExecuteNonQuery();
-                }
-            }
-            return result;
-        }
     }
 }
