@@ -1,11 +1,11 @@
-﻿using MiniSuper.Entity;
-using System;
+﻿using System;
+using MiniSuper.Entity;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MiniSuper.DataAccess
 {
@@ -26,7 +26,7 @@ namespace MiniSuper.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand("SpDetalleVentaSelectAll", conn))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
                     using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
@@ -46,14 +46,104 @@ namespace MiniSuper.DataAccess
                             };
                             result.Add(entity);
                         }
-
                     }
                 }
-
             }
+            return result;
+        }
 
+        public DetalleVenta Select(int detVentaId)
+        {
+            DetalleVenta entity = null;
 
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleVentaSelect", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetVentaId", detVentaId);
 
+                    conn.Open();
+                    using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
+                    {
+                        if (rd.Read())
+                        {
+                            entity = new DetalleVenta
+                            {
+                                DetVentaId = rd.GetInt32(0),
+                                VentaId = rd.GetInt32(1),
+                                Cantidad = rd.GetInt32(2),
+                                ProductoId = rd.GetInt32(3),
+                                Precio = rd.GetDecimal(4),
+                                Subtotal = rd.GetDecimal(5)
+                            };
+                        }
+                    }
+                }
+            }
+            return entity;
+        }
+
+        public int Insert(DetalleVenta entity)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleVentaInsert", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@VentaId", entity.VentaId);
+                    cmd.Parameters.AddWithValue("@Cantidad", entity.Cantidad);
+                    cmd.Parameters.AddWithValue("@ProductoId", entity.ProductoId);
+                    cmd.Parameters.AddWithValue("@Precio", entity.Precio);
+                    cmd.Parameters.AddWithValue("@Subtotal", entity.Subtotal);
+
+                    conn.Open();
+                    result = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return result;
+        }
+
+        public int Update(DetalleVenta entity)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleVentaUpdate", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetVentaId", entity.DetVentaId);
+                    cmd.Parameters.AddWithValue("@VentaId", entity.VentaId);
+                    cmd.Parameters.AddWithValue("@Cantidad", entity.Cantidad);
+                    cmd.Parameters.AddWithValue("@ProductoId", entity.ProductoId);
+                    cmd.Parameters.AddWithValue("@Precio", entity.Precio);
+                    cmd.Parameters.AddWithValue("@Subtotal", entity.Subtotal);
+
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            return result;
+        }
+
+        public int Delete(int detVentaId)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDetalleVentaDelete", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetVentaId", detVentaId);
+
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
             return result;
         }
     }
