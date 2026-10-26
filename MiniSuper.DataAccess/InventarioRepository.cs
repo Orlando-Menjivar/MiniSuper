@@ -54,6 +54,54 @@ namespace MiniSuper.DataAccess
             return result;
         }
 
+        public Inventario Select(int inventarioId)
+        {
+            Inventario entity = null;
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpInventarioSelect", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@InventarioId", inventarioId);
+                    conn.Open();
+                    using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
+                    {
+                        if (rd.Read())
+                        {
+                            entity = new Inventario
+                            {
+                                InventarioId = rd.GetInt32(0),
+                                ProductoId = rd.GetInt32(1),
+                                StockActual = rd.GetInt32(2),
+                                StockMinimo = rd.GetInt32(3),
+                                CostoPromedio = rd.GetDecimal(4)
+                            };
+                        }
+                    }
+                }
+            }
+            return entity;
+        }
+
+        public int Insert(Inventario entity)
+        {
+            int result = 0;
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpInventarioInsert", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ProductoId", entity.ProductoId);
+                    cmd.Parameters.AddWithValue("@StockActual", entity.StockActual);
+                    cmd.Parameters.AddWithValue("@StockMinimo", entity.StockMinimo);
+                    cmd.Parameters.AddWithValue("@CostoPromedio", entity.CostoPromedio);
+                    conn.Open();
+                    result = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return result;
+        }
+
     }
 }
 

@@ -31,5 +31,33 @@ namespace MiniSuper.BussinesLogic
 
             return result;
         }
+
+        public Cargo Select(int cargoId)
+        {
+            Cargo entity = null;
+            try
+            {
+                entity = _repository.Select(cargoId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return entity;
+        }
+
+        public int Insert(Cargo entity)
+        {
+            int result = 0;
+            try
+            {
+                result = _repository.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return result;
+        }
     }
 }

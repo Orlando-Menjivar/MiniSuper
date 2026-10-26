@@ -8,4 +8,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MiniSuper.BussinesLogic\MiniSuper.BussinesLogic.csproj" />
+    <ProjectReference Include="..\MiniSuper.DataAccess\MiniSuper.DataAccess.csproj" />
+    <ProjectReference Include="..\MiniSuper.Entity\MiniSuper.Entity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.Config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

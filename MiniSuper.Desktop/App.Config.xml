@@ -2,7 +2,7 @@
 <configuration>
 	<connectionStrings>
 		<add name="MiniSuperDB"
-			 connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=MiniSuper;Integrated Security=True;"
+			 connectionString="Server=192.168.0.15,1433;Database=MinisuperDB;User Id=sa;Password=TuPasswordMuySeguro123!;TrustServerCertificate=True;"
 			 providerName="System.Data.SqlClient" />
 	</connectionStrings>
 	<startup>

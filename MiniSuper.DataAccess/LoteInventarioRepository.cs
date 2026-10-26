@@ -17,10 +17,6 @@ namespace MiniSuper.DataAccess
             _connectionFactory = connectionFactory;
         }
 
-        public int Insert(LoteInventario entity)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<LoteInventario> SelectAll()
         {
@@ -53,18 +49,56 @@ namespace MiniSuper.DataAccess
                 }
             }
             return result;
-
-
-
-
-
-
-
-
-
-
-
-
         }
+
+        public LoteInventario Select(int loteInventarioId)
+        {
+            LoteInventario entity = null;
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpLoteInventarioSelect", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@LoteInventarioId", loteInventarioId);
+                    conn.Open();
+                    using (SqlDataReader rd = cmd.ExecuteReader(CommandBehavior.SingleResult))
+                    {
+                        if (rd.Read())
+                        {
+                            entity = new LoteInventario
+                            {
+                                LoteInventarioId = rd.GetInt32(0),
+                                DetCompraId = rd.GetInt32(1),
+                                FechaIngreso = rd.GetDateTime(2),
+                                StockInicialLote = rd.GetInt32(3),
+                                StockActualLote = rd.GetInt32(4)
+                            };
+                        }
+                    }
+                }
+            }
+            return entity;
+        }
+
+        public int Insert(LoteInventario entity)
+        {
+            int result = 0;
+            using (SqlConnection conn = _connectionFactory.CreateConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpLoteInventarioInsert", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DetCompraId", entity.DetCompraId);
+                    cmd.Parameters.AddWithValue("@FechaIngreso", entity.FechaIngreso);
+                    cmd.Parameters.AddWithValue("@StockInicialLote", entity.StockInicialLote);
+                    cmd.Parameters.AddWithValue("@StockActualLote", entity.StockActualLote);
+
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            return result;
+        }
+
     }
 }
