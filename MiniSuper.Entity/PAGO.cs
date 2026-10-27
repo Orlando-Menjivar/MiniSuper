@@ -9,12 +9,14 @@ namespace MiniSuper.Entity
     public class Pago
     {
         public int PagoId { get; set; }
-        public int VentaId { get; set; }
-        public int FormaPagoId { get; set; }
+        public int? VentaId { get; set; }
+        public int? FormaPagoId { get; set; }
         public decimal Monto { get; set; }
-        public decimal MontoRecibido { get; set; }
-        public decimal Cambio { get; set; }
+        public decimal? MontoRecibido { get; set; }
+        public decimal? Cambio { get; set; }
         public string DuiTitular { get; set; }
-        public string FirmaTitular { get; set; }
+        public bool? FirmaTitular { get; set; }
     }
 }
+
+

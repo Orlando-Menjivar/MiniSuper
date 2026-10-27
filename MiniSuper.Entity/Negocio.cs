@@ -14,6 +14,5 @@ namespace MiniSuper.Entity
         public string Telefono { get; set; }
         public string MensajeTicket { get; set; }
 
-
     }
 }
